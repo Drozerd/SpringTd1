@@ -32,5 +32,20 @@ pipeline {
                 bat "mvn -Dmaven.test.failure.ignore=true install "
     }
 }
+        post 
+        {
+        always {
+                echo "Le build a été lancé"
+                }
+        succes {
+                echo "Les tests ont bienété validés, on peut deployer en prod"
+        }
+        failure {
+        echo "Echece
+        mail to : "debeneyf@gmail.com",
+        subject : "Echec Pipeline :${currentBuild.fullDisplayName}"
+        body: "Erreur dans le build : ${env.BUILD_URL]"
+        }
+        }
 }
 }
